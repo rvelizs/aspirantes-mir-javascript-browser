@@ -2,7 +2,7 @@
 const form = document.querySelector('form');
 const input = document.querySelector('input');
 const section = document.querySelector('section');
-const button = document.querySelector('button');
+const button = document.getElementById('remove');
 
 // Manejar el evento de enviar el formulario
 form.addEventListener('submit', (event) => {
@@ -13,7 +13,9 @@ form.addEventListener('submit', (event) => {
 });
 
 button.addEventListener('click', function () {
+    const name = localStorage.getItem('name');
     deleteName();
+    section.textContent = name + " eliminado satisfactoriamente";
 });
 
 // Función para mostrar el nombre guardado en localStorage
