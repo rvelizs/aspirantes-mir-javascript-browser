@@ -14,20 +14,33 @@ const task = document.getElementById("task");
 
 function handleSubmit (event) {
     event.preventDefault();
-    // objeto Task
-    obj.id = numTasks++;
-    obj.title = task.value;
-    obj.completed = false;
-    console.log(obj);
-    createTask(obj);
+    if(task.value === "") {
+        alert("Ingrese una tarea");
+        return;
+    } else {
+        // se almacena el objeto Task
+        obj.id = numTasks++;
+        obj.title = task.value;
+        obj.completed = false;
+        // prueba
+        console.log(obj);
+        createTask(obj);
+    }
     //input.addEventListener("click", handleCheckTask);
 }
 
 function createTask (x) {
     const ul = document.getElementById("list");
     const li = document.createElement("li");
-    li.appendChild(ul);
-    li.textContent(x.title);
+    const fragment = document.createDocumentFragment();
+    const input = document.createElement("input");
+    input.setAttribute("type", "checkbox");
+    input.setAttribute("id", x.id);
+    const text = xli.textContent = obj.title;
+    li.appendChild(input);
+    ul.appendChild(li);
+    
+    
 }
 
 function handleCheckTask (event) {
