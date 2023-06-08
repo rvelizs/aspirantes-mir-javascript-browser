@@ -78,33 +78,25 @@ function menuRecursivo (menu) {
 
 
 
-function menuRecursivoDOM (menu, ul) {
-    for (let i = 0; i < menu.length; i++) {
-        
-        // componentes del menu
+function menuRecursivoDOM (menu, padre) {
+    const ul = document.createElement('ul');
+    ul.setAttribute('id', padre.name);
+    padre.appendChild(ul);
+    menu.forEach(element => {
         const li = document.createElement('li');
         const a = document.createElement('a');
-        a.setAttribute('href', menu[i].link);
-        const sub = document.createTextNode(menu[i].name);
-        a.appendChild(sub);
+        a.setAttribute('href', element.link);
+        a.textContent = element.name;
         li.appendChild(a);
         ul.appendChild(li);
-
-        // si tiene submenus
-        if (menu[i].items.length > 0) {
-            // nuevo ul
-            const newUl = document.createElement('ul');
-            //newUl.setAttribute('id', menu[i].name);
-            //console.log(menu[i].name);
-            //console.log(newUl.id);
-            menuRecursivoDOM(menu[i].items, newUl);
+        if (element.items.length > 0) {
+            menuRecursivoDOM(element.items, li);
         }
-    }
+    });
 }
 
 // Prueba de recorrido de menu DOM (recursivo)
-const ulInicial = document.getElementById('menu');
-menuRecursivoDOM(menu, ulInicial);
+menuRecursivoDOM(menu, document.getElementById('menu'));
 
 
 //menuRecursivo(menu);
