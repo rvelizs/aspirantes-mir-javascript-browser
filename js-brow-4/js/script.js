@@ -89,6 +89,7 @@ function menuRecursivoDOM (menu, padre) {
         a.textContent = element.name;
         li.appendChild(a);
         ul.appendChild(li);
+        // si existen subtemas
         if (element.items.length > 0) {
             menuRecursivoDOM(element.items, li);
         }
